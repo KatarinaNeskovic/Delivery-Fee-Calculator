@@ -3,7 +3,7 @@ interface IDeliveryFee {
     distance: IDistance;
     items: Items;
     time: ITime;
-    maxDeliveryFee:number;
+    maxDeliveryFee:number; //do i need this as a prop?
 }
 
 interface Items {
