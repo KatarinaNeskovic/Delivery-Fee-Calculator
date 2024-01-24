@@ -1,12 +1,12 @@
 interface IDeliveryFee {
-    cart: ICart;
-    distance: IDistance;
-    items: Items;
-    time: ITime;
-    maxDeliveryFee:number; //do i need this as a prop?
+    cartValue: number;
+    deliveryDistance: number;
+    amountOfItems: number;
+    time: Date;
+    deliveryPrice:number;
 }
 
-interface Items {
+/* interface Items {
     itemsNo: number;
     extraItemsSurchrage: number; //If the number of items is five or more, an additional 50 cent surcharge is added for each item above and including the fifth item.
     bulkFee: number; //An extra "bulk" fee applies for more than 12 items of 1,20€
@@ -28,4 +28,4 @@ interface IDistance {
 interface ITime {
     orderTime: Date;
     rushhourFee: number; //During the Friday rush, 3 - 7 PM, the delivery fee (the total fee including possible surcharges) will be multiplied by 1.2x.
-}
+} */
