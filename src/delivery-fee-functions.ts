@@ -1,7 +1,7 @@
 
 //If the cart value is less than 10€, a small order surcharge is added to the delivery price. The surcharge is the difference between the cart value and 10€. For example if the cart value is 8.90€, the surcharge will be 1.10€.
 import {additionalDistanceSegment, firstDistanceSegment, minCartValue, minDistanceFee} from "./parameters"
-export function totalCartValue(price: number): number {
+export function cartValueSurcharge(price: number): number {
     let surcharge: number;
     if (price < minCartValue) {
         surcharge = minCartValue - price;
@@ -9,9 +9,11 @@ export function totalCartValue(price: number): number {
     else {
         surcharge = 0;
     }
-    return price + surcharge;
+    return surcharge;
 }
 
+/* if (price>minCartValue) return price 
+else return minCartValue; */
 
 /* A delivery fee for the first 1000 meters (=1km) is 2€. If the delivery distance is longer than that, 1€ is added for every additional 500 meters that the courier needs to travel before reaching the destination. Even if the distance would be shorter than 500 meters, the minimum fee is always 1€.
 Example 1: If the delivery distance is 1499 meters, the delivery fee is: 2€ base fee + 1€ for the additional 500 m => 3€
