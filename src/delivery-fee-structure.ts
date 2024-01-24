@@ -1,4 +1,4 @@
-interface IDeliveryFee {
+export interface IDeliveryFee {
     cartValue: number;
     deliveryDistance: number;
     amountOfItems: number;
