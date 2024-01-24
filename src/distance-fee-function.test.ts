@@ -15,27 +15,33 @@ describe('Test distance fee function', () => {
         expect(result).toEqual(p.minDistanceFee); //2eur
     })
 
-    test('when distance is greater than min distance segment but less the first additional distance segment', () => {
-        const distance = p.firstDistanceSegment + 499;  //1499m
+    test('when distance is greater than min distance segment but less the 1st extra distance segment', () => {
+        const distance = p.firstDistanceSegment + 499.0;  //1499m
         const result = distanceFee(distance); 
         expect(result).toEqual(p.minDistanceFee + p.extraDistanceFee); //to equal 3eur
     })
 
-    test('when distance is greater than min distance segment but equal to first additional distance segment', () => {
-        const distance = p.firstDistanceSegment + 500;  //1500m
+    test('when distance is greater than min distance segment but equal to 1st extra distance segment', () => {
+        const distance = p.firstDistanceSegment + 500.0;  //1500m
         const result = distanceFee(distance); 
         expect(result).toEqual(p.minDistanceFee + p.extraDistanceFee); //to equal 3eur
     })
 
-    test('when distance is greater than min distance segment and greater than second additional distance segment', () => {
-        const distance = p.firstDistanceSegment + 501;  //1501m
+    test('when distance is greater than min distance segment and greater than 2nd extra distance segment', () => {
+        const distance = p.firstDistanceSegment + 501.0;  //1501m
         const result = distanceFee(distance); 
         expect(result).toEqual(p.minDistanceFee + 2*p.extraDistanceFee); //to equal 4eur
     })
 
-    test('when distance is greater than min distance segment and greater than third additional distance segment', () => {
-        const distance = p.firstDistanceSegment + 1001;  //2001m
+    test('when distance is greater than min distance segment and greater than 3rd extra distance segment', () => {
+        const distance = p.firstDistanceSegment + 1001.0;  //2001m
         const result = distanceFee(distance); 
         expect(result).toEqual(p.minDistanceFee + 3*p.extraDistanceFee); //to equal 5eur
+    })
+
+    test('when distance is greater than min distance segment and greater than 6th extra distance segment', () => {
+        const distance = p.firstDistanceSegment + 3005.0;  //4005m
+        const result = distanceFee(distance); 
+        expect(result).toEqual(p.minDistanceFee + 7*p.extraDistanceFee); //to equal 9eur
     })
 })
