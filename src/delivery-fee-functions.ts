@@ -1,8 +1,10 @@
 
+//If the cart value is less than 10€, a small order surcharge is added to the delivery price. The surcharge is the difference between the cart value and 10€. For example if the cart value is 8.90€, the surcharge will be 1.10€.
+import {additionalDistanceSegment, firstDistanceSegment, minCartValue, minDistanceFee} from "./parameters"
 export function totalCartValue(price: number): number {
     let surcharge: number;
-    if (price < 10) {
-        surcharge = 10 - price;
+    if (price < minCartValue) {
+        surcharge = minCartValue - price;
     }
     else {
         surcharge = 0;
@@ -18,10 +20,28 @@ Example 3: If the delivery distance is 1501 meters, the delivery fee is: 2€ ba
 
 
 export function distanceFee(distance: number): number {
-    if (distance < 1000) return 2;
+    if (distance <= firstDistanceSegment) return minDistanceFee;
     else {
-        let distanceFee = Math.ceil(distance / 500);
+        let distanceFee = Math.ceil(distance / additionalDistanceSegment);
         return distanceFee;
     }
+
+}
+
+/* If the number of items is five or more, an additional 50 cent surcharge is added for each item above and including the fifth item. An extra "bulk" fee applies for more than 12 items of 1,20€
+Example 1: If the number of items is 4, no extra surcharge
+Example 2: If the number of items is 5, 50 cents surcharge is added
+Example 3: If the number of items is 10, 3€ surcharge (6 x 50 cents) is added
+Example 4: If the number of items is 13, 5,70€ surcharge is added ((9 * 50 cents) + 1,20€)
+Example 5: If the number of items is 14, 6,20€ surcharge is added ((10 * 50 cents) + 1,20€) */
+
+export function itemsFee(itemsNo: number): number {
+    if (itemsNo <= 4) {
+        return 0;
+    }
+    else if (itemsNo <= 12) {
+        return (itemsNo - 4) * 0.5;
+    }
+    else return (itemsNo - 4) * 0.5 + 1.2;
 
 }
