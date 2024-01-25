@@ -8,8 +8,9 @@ export const maxSurchargeFreeItemsNo = 4;
 export const extraItemsSurcharge = 0.5;
 export const minBulkItemsNo = 12;
 export const bulkItemsFee = 1.2;
-export const startRushHour = 3;
-export const endRushHour = 7;
+export const startRushHour = 15;
+export const endRushHour = 19;
 export const rushHourFactor = 1.2;
+export const rushDay = 5;
 export const maxDeliveryFee = 15;
 
