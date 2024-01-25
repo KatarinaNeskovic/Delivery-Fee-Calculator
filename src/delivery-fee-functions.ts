@@ -1,6 +1,9 @@
 
 //If the cart value is less than 10€, a small order surcharge is added to the delivery price. The surcharge is the difference between the cart value and 10€. For example if the cart value is 8.90€, the surcharge will be 1.10€.
-import * as p from "./parameters"
+import * as p from "./parameters";
+import { IDeliveryFee } from "./delivery-fee-structure";
+
+
 export function cartValueSurcharge(price: number): number {
     let surcharge: number;
     if (price < p.minCartValue) {
@@ -46,4 +49,24 @@ export function extraItemsFee(itemsNo: number): number {
     }
     else return (itemsNo - p.maxSurchargeFreeItemsNo) * p.extraItemsSurcharge + p.bulkItemsFee;
 
+}
+
+export function checkRushHour(): boolean {
+    const dateTime = new Date();
+
+    const hour = dateTime.getHours(); //gets hours in military time from 0(midnight) to 23
+ /*    const minute = dateTime.getMinutes(); //gets mins in military time  */
+    let adjustedHour;
+
+    if (hour > 12) {
+        adjustedHour = hour - 12.0; //if the militarry time number is between 13 and 23 it needs to be adjusted for PM
+    }
+    else {
+        adjustedHour = hour; // numbers from 0 to 12 are matching the AM format.
+    }
+
+    if (adjustedHour >= p.startRushHour && adjustedHour <= p.endRushHour) {
+        return true;
+    }
+    else return false;
 }
