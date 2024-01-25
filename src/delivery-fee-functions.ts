@@ -55,8 +55,9 @@ export function checkRushHour(): boolean {
     const dateTime = new Date();
 
     const hour = dateTime.getHours(); //gets hours in military time from 0(midnight) to 23
- /*    const minute = dateTime.getMinutes(); //gets mins in military time  */
+/*     const minute = dateTime.getMinutes(); //gets mins in military time  */ 
     let adjustedHour;
+    let adjustedTime;
 
     if (hour > 12) {
         adjustedHour = hour - 12.0; //if the militarry time number is between 13 and 23 it needs to be adjusted for PM
@@ -65,7 +66,7 @@ export function checkRushHour(): boolean {
         adjustedHour = hour; // numbers from 0 to 12 are matching the AM format.
     }
 
-    if (adjustedHour >= p.startRushHour && adjustedHour <= p.endRushHour) {
+    if (adjustedHour >= p.startRushHour && adjustedHour <p.endRushHour) {
         return true;
     }
     else return false;
