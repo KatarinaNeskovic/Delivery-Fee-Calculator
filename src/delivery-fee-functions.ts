@@ -56,13 +56,13 @@ export function extraItemsFee(itemsNo: number): number {
  * Checks if the delivery time and date the customer requested falls within rush hours.
  * @param requestedTime requested delivery time and date
  * @returns true or false 
- * @remark assumed that if requested delivery time is exactly 7:00PM (endRushHour), it still falls into the rush hour. 
+ * @remark assumed that if requested delivery time is exactly for 7:00 PM (endRushHour), it still falls into the rush hour. 
  */
 export function checkRushHour(requestedTime: Date): boolean {
 
-    const hour = requestedTime.getHours(); //gets hours in military time from 0(midnight) to 23
-    const minute = requestedTime.getMinutes(); //gets mins in military time  */
-    const day = requestedTime.getDay();
+    const hour = requestedTime.getHours(); 
+    const minute = requestedTime.getMinutes(); 
+    const day = requestedTime.getDay(); 
 
     // 
     if (day === p.rushDay && hour >= p.startRushHour &&
