@@ -1,6 +1,6 @@
 
 import * as p from "./parameters";
-import { IDeliveryFee } from "./delivery-fee-structure";
+
 
 /** 
  * Calculates potential surcharge as difference between cart value and predefined minimum amount, if cart value is less than that amount.
@@ -64,10 +64,8 @@ export function checkRushHour(requestedTime: Date): boolean {
     const minute = requestedTime.getMinutes(); 
     const day = requestedTime.getDay(); 
 
-    // 
     if (day === p.rushDay && hour >= p.startRushHour &&
         (hour < p.endRushHour || (hour === p.endRushHour && minute === 0))
-
     ) {
         return true;
     }
