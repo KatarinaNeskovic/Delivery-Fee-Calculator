@@ -3,6 +3,6 @@ export interface DeliveryFee {
     cartValue: number;
     deliveryDistance: number;
     amountOfItems: number;
-    time: Date;
+    dateTime: string;
     deliveryPrice:number;
 }  

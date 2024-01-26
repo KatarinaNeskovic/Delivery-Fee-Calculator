@@ -10,7 +10,7 @@ function App() {
     cartValue: 0,
     deliveryDistance: 0,
     amountOfItems: 0,
-    time: new Date(2001, 0, 1), //setting initial date to 01.01.2001
+    dateTime: '2001-01-01T11:00', //setting initial date to 01.01.2001 at 11:00
     deliveryPrice: 0
   })
 
@@ -28,11 +28,18 @@ function App() {
   }
 
   return (
-<div className='input-fields'> 
+
+    <form onSubmit={handleSubmit} className='form' >
+
+      <header>
+        Calculate your delivery fee
+      </header>
+
       <label>
         Cart Value
         <input
           type="number"
+          min={0}
           name="cartValue"
           value={deliveryFee.cartValue}
           onChange={handleChange}
@@ -41,9 +48,10 @@ function App() {
       </label>
 
       <label>
-        Delivery Distance 
+        Delivery Distance
         <input
           type="number"
+          min={0}
           name="deliveryDistance"
           value={deliveryFee.deliveryDistance}
           onChange={handleChange}
@@ -52,9 +60,10 @@ function App() {
       </label>
 
       <label>
-        Amount of Items 
+        Amount of Items
         <input
           type="number"
+          min={0}
           name="amountOfItems"
           value={deliveryFee.amountOfItems}
           onChange={handleChange}
@@ -63,15 +72,17 @@ function App() {
       </label>
 
       <label>
-        Time
+        Order Time
         <input
-          type="date"
-          name='time'
+          type="datetime-local"
+          name='dateTime'
           onChange={handleChange}
           required
         />
       </label>
-      </div>
+
+      <button type='submit'> Calculate delivery fee </button>
+    </form>
   )
 
 }
