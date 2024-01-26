@@ -3,7 +3,7 @@ import * as p from "./parameters";
 import { IDeliveryFee } from "./delivery-fee-structure";
 
 /** 
- * Calculates potential surcharge as difference between cart value and set minimum amount, if cart value is less than the set minimum.
+ * Calculates potential surcharge as difference between cart value and predefined minimum amount, if cart value is less than that amount.
  * @param price   total value of items in the cart
  * @returns surcharge 
  */
