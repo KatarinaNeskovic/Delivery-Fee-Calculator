@@ -10,8 +10,10 @@ export function DeliveryPriceCalculator() {
     cartValue: 0,
     deliveryDistance: 0,
     amountOfItems: 0,
-    orderTime: (new Date()).toString(), //setting initial order time to current time
+    orderTime: '2024-01-01T07:00' //setting initial order time to current time
   })
+
+  const [deliveryFee, setDeliveryFee] = useState(0);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target; //deconstructing e.target object to access its name and value props
@@ -26,8 +28,11 @@ export function DeliveryPriceCalculator() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
-    const deliveryPrice = totalDeliveryFee(request)
+    const fee = totalDeliveryFee(request)
+
+    setDeliveryFee(fee);
   }
+
 
 
 
@@ -79,16 +84,16 @@ export function DeliveryPriceCalculator() {
         Order Time
         <input
           type="datetime-local"
-          name='dateTime'
+          name='orderTime'
           value={request.orderTime}
-          min={(new Date ()).toString()}  //setting the minimum date and time for whenever the app refreshes
+          min='2024-01-01T07:00'  //setting the minimum date and time for whenever the app refreshes
           onChange={handleChange}
           required
         />
       </label>
 
       <button onClick={handleSubmit}> Calculate delivery price </button>
-      <h4> Delivery price: { } EUR</h4>
+      <h4> Delivery price: {deliveryFee} EUR</h4>
     </form>
   )
 
