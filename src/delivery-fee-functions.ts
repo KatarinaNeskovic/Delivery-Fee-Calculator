@@ -1,4 +1,5 @@
 
+import { DeliveryFee } from "./delivery-fee-structure";
 import * as p from "./parameters";
 
 
@@ -24,7 +25,7 @@ export function cartValueSurcharge(price: number): number {
  * Calculates fee based on the distance between store and customer's requested location.
  * @param distance delivery distance 
  * @returns distance fee
- * @remark delivery fee for first 1000m is 2€, every additional segment of 500m (or less)is charged 1€ extra per segment
+ * @remark distance fee for first 1000m is 2€, every additional segment of 500m (or less)is charged 1€ extra per segment
  */
 export function distanceFee(distance: number): number {
     if (distance <= p.firstDistanceSegment) return p.minDistanceFee;
@@ -60,9 +61,9 @@ export function extraItemsFee(itemsNo: number): number {
  */
 export function checkRushHour(orderTime: string): boolean {
     const orderTimeAdjust = new Date(orderTime); //creates date object from string
-    const hour = orderTimeAdjust.getHours(); 
-    const minute = orderTimeAdjust.getMinutes(); 
-    const day = orderTimeAdjust.getDay(); 
+    const hour = orderTimeAdjust.getHours();
+    const minute = orderTimeAdjust.getMinutes();
+    const day = orderTimeAdjust.getDay();
 
     if (day === p.rushDay && hour >= p.startRushHour &&
         (hour < p.endRushHour || (hour === p.endRushHour && minute === 0))
@@ -73,3 +74,20 @@ export function checkRushHour(orderTime: string): boolean {
 }
 
 
+export function totalDeliveryFee(props: DeliveryFee): number {
+
+    if (props.cartValue >= 200) return 0;
+
+    let deliveryFee = cartValueSurcharge(props.cartValue) + distanceFee(props.deliveryDistance) + extraItemsFee(props.amountOfItems);
+
+    if (checkRushHour(props.orderTime)) {
+        deliveryFee = deliveryFee * 1.2;
+    }
+
+    if (deliveryFee > p.maxDeliveryFee) {
+        return p.maxDeliveryFee;
+    }
+    else {
+        return deliveryFee;
+    }
+}

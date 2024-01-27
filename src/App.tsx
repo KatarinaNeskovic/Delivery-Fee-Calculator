@@ -81,8 +81,8 @@ function App() {
         />
       </label>
 
-      <button type='submit'> Calculate delivery fee </button>
-      <h4> Your delivery fee is: EUR</h4>
+      <button type='submit'> Calculate delivery price </button>
+      <h4> Delivery price: EUR</h4>
     </form>
   )
 
