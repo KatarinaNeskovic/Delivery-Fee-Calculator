@@ -1,5 +1,5 @@
 
-export interface DeliveryFee {
+export interface DeliveryRequest {
     cartValue: number;
     deliveryDistance: number;
     amountOfItems: number;

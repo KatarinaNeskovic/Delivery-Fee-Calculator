@@ -1,5 +1,5 @@
 
-import { DeliveryFee } from "./delivery-fee-structure";
+import { DeliveryRequest } from "./delivery-fee-structure";
 import * as p from "./parameters";
 
 
@@ -61,10 +61,10 @@ export function extraItemsFee(itemsNo: number): number {
  * @remark assumed that if requested delivery time is exactly for 7:00 PM (endRushHour), it still falls into the rush hour. 
  */
 export function checkRushHour(orderTime: string): boolean {
-    const orderTimeAdjust = new Date(orderTime); //creates date object from string
-    const hour = orderTimeAdjust.getHours();
-    const minute = orderTimeAdjust.getMinutes();
-    const day = orderTimeAdjust.getDay();
+    const orderTimeObject = new Date(orderTime); //creates date object from string
+    const hour = orderTimeObject.getHours();
+    const minute = orderTimeObject.getMinutes();
+    const day = orderTimeObject.getDay();
 
     if (day === p.rushDay && hour >= p.startRushHour &&
         (hour < p.endRushHour || (hour === p.endRushHour && minute === 0))
@@ -78,16 +78,16 @@ export function checkRushHour(orderTime: string): boolean {
 /**
  * Caluculates total delivery fee with all possible surcharges,
    taking into account potential rush hours.
- * @param props 
+ * @param request 
  * @returns total delivery fee 
  */
-export function totalDeliveryFee(props: DeliveryFee): number {
+export function totalDeliveryFee(request: DeliveryRequest): number {
 
-    if (props.cartValue >= 200) return 0;
+    if (request.cartValue >= 200) return 0;
 
-    let deliveryFee = smallOrderSurcharge(props.cartValue) + distanceFee(props.deliveryDistance) + extraItemsFee(props.amountOfItems);
+    let deliveryFee = smallOrderSurcharge(request.cartValue) + distanceFee(request.deliveryDistance) + extraItemsFee(request.amountOfItems);
 
-    if (checkRushHour(props.orderTime)) {
+    if (checkRushHour(request.orderTime)) {
         deliveryFee = deliveryFee * 1.2;
     }
 

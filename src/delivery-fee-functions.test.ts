@@ -167,6 +167,7 @@ describe('Test check rush hour function', () => {
 })
 
 
+
 describe('Test total delivery fee function', () => {
 
     test('when cart value is equal to min cart value that qualifies for free delivery', () => {
