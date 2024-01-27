@@ -1,23 +1,23 @@
 import * as p from "./parameters"
-import { cartValueSurcharge, distanceFee, checkRushHour, extraItemsFee } from "./delivery-fee-functions"
+import { smallOrderSurcharge, distanceFee, checkRushHour, extraItemsFee, totalDeliveryFee } from "./delivery-fee-functions"
 
 
 describe('Test cart value surcharge function', () => {
 
     test('when cart value is less than minimum cart value', () => {
         const price = p.minCartValue - 1.0;
-        const result = cartValueSurcharge(price) + price;
+        const result = smallOrderSurcharge(price) + price;
         expect(result).toEqual(p.minCartValue);
     })
     test('when cart value equals minimum cart value', () => {
         const price = p.minCartValue;
-        const result = cartValueSurcharge(price) + price;
+        const result = smallOrderSurcharge(price) + price;
         expect(result).toEqual(p.minCartValue);
     })
 
     test('when cart value is greater than minimum cart value', () => {
         const price = p.minCartValue + 2.5;
-        const result = cartValueSurcharge(price) + price;
+        const result = smallOrderSurcharge(price) + price;
         expect(result).toEqual(price);
     })
 })
@@ -167,6 +167,83 @@ describe('Test check rush hour function', () => {
 })
 
 
+describe('Test total delivery fee function', () => {
+
+    test('when cart value is equal to min cart value that qualifies for free delivery', () => {
+
+        expect(totalDeliveryFee(
+            {
+                cartValue: 200,
+                amountOfItems: 5,
+                deliveryDistance: 1000,
+                orderTime: '2023-05-12T15:02'
+            }
+        )).toEqual(0);
+    });
+
+
+    test('when cart value is greater than min cart value that qualifies for free delivery', () => {
+
+        expect(totalDeliveryFee(
+            {
+                cartValue: 205,
+                amountOfItems: 5,
+                deliveryDistance: 1000,
+                orderTime: '2023-05-12T15:02'
+            }
+        )).toEqual(0);
+    });
+
+    test('when surcharges apply for all user inputs, except bulk charge', () => {
+
+        expect(totalDeliveryFee(
+            {
+                cartValue: 8, //surcharge 2eur
+                amountOfItems: 5, // surcharge 0.5c
+                deliveryDistance: 1800, //surcharge 4eur 
+                orderTime: '2024-02-09T19:00', // rush hour (multiplied by 1.2)
+            }
+        )).toEqual(7.8);
+    });
+
+    test('when surcharges apply for all user inputs incl. bulk charge and delivery fee is greater than maximum delivery fee', () => {
+
+        expect(totalDeliveryFee(
+            {
+                cartValue: 5, //surcharge 5eur
+                amountOfItems: 13, // surcharge 0.5c*9 + 1.2 = 5.7eur
+                deliveryDistance: 2001, //surcharge 5eur 
+                orderTime: '2023-08-18T15:00', // rush hour (multiplied by 1.2)
+            }
+        )).toEqual(15.0);
+    });
+    
+    test('when surcharges apply for all user inputs except number of items', () => {
+
+        expect(totalDeliveryFee(
+            {
+                cartValue: 7.5, //surcharge 2.5eur
+                amountOfItems: 4, 
+                deliveryDistance: 2001, //surcharge 5eur 
+                orderTime: '2023-08-18T15:00', // rush hour (multiplied by 1.2)
+            }
+        )).toEqual(9);
+    });
+
+    test('when surcharges apply for all user inputs and minimum distance fee applies to distance ', () => {
+
+        expect(totalDeliveryFee(
+            {
+                cartValue: 7, //surcharge 3eur
+                amountOfItems: 14, //surcharge 0.5*(10)=5eur + 1.2=6.2
+                deliveryDistance: 1000, //min surcharge 2eur
+                orderTime: '2024-03-15T19:00' 
+            }
+        )).toEqual(13.44);
+    });
+    
+
+})
 
 /* import React from 'react';
 import { render, screen } from '@testing-library/react';

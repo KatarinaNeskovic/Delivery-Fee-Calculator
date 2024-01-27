@@ -4,11 +4,12 @@ import * as p from "./parameters";
 
 
 /** 
- * Calculates potential surcharge as difference between cart value and predefined minimum amount, if cart value is less than that amount.
+ * Calculates small order surcharge as difference between cart value and predefined minimum amount,
+   if cart value is less than that amount.
  * @param price   total value of items in the cart
- * @returns surcharge 
+ * @returns surcharge amount
  */
-export function cartValueSurcharge(price: number): number {
+export function smallOrderSurcharge(price: number): number {
     let surcharge: number;
     if (price < p.minCartValue) {
         surcharge = p.minCartValue - price;
@@ -22,10 +23,10 @@ export function cartValueSurcharge(price: number): number {
 
 
 /**
- * Calculates fee based on the distance between store and customer's requested location.
+ * Calculates fee based on the distance between store and customer's requested delivery location.
  * @param distance delivery distance 
- * @returns distance fee
- * @remark distance fee for first 1000m is 2€, every additional segment of 500m (or less)is charged 1€ extra per segment
+ * @returns distance fee 
+ * @remark distance fee for first 1000m is 2€, every additional segment of up to 500m is charged 1€ extra per segment
  */
 export function distanceFee(distance: number): number {
     if (distance <= p.firstDistanceSegment) return p.minDistanceFee;
@@ -74,11 +75,17 @@ export function checkRushHour(orderTime: string): boolean {
 }
 
 
+/**
+ * Caluculates total delivery fee with all possible surcharges,
+   taking into account potential rush hours.
+ * @param props 
+ * @returns total delivery fee 
+ */
 export function totalDeliveryFee(props: DeliveryFee): number {
 
     if (props.cartValue >= 200) return 0;
 
-    let deliveryFee = cartValueSurcharge(props.cartValue) + distanceFee(props.deliveryDistance) + extraItemsFee(props.amountOfItems);
+    let deliveryFee = smallOrderSurcharge(props.cartValue) + distanceFee(props.deliveryDistance) + extraItemsFee(props.amountOfItems);
 
     if (checkRushHour(props.orderTime)) {
         deliveryFee = deliveryFee * 1.2;

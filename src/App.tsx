@@ -11,7 +11,6 @@ function App() {
     deliveryDistance: 0,
     amountOfItems: 0,
     orderTime: '2001-01-01T11:00', //providing string value for the initial date - 01.01.2001 at 11:00
-    deliveryPrice: 0
   })
 
   const handleChange = (e: any) => {

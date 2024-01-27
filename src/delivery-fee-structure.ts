@@ -4,5 +4,4 @@ export interface DeliveryFee {
     deliveryDistance: number;
     amountOfItems: number;
     orderTime: string;
-    deliveryPrice:number;
 }  
