@@ -5,12 +5,12 @@ import { totalDeliveryFee } from './delivery-fee-functions'
 
 export function DeliveryPriceCalculator() {
 
-  // setting initial state of delivery fee object where proprs are input fields the user will fill on the form 
+  // setting initial state for request object
   const [request, setRequest] = useState<DeliveryRequest>({
     cartValue: 0,
     deliveryDistance: 0,
     amountOfItems: 0,
-    orderTime: '2024-01-01T07:00' //setting initial order time to current time
+    orderTime: '2024-01-01T07:00' //setting initial order time to Jan 1st 2024 at 7:00
   })
 
   const [deliveryFee, setDeliveryFee] = useState(0);
@@ -99,29 +99,6 @@ export function DeliveryPriceCalculator() {
 
 }
 
-
-/*
-  const [cartValue, setCartValue] = useState(0);
-  const [deliveryDistance, setDeliveryDistance] = useState(0);
-  const [amountOfItems, setAmountOfItems] = useState(0);
-  const [dateTime, setDateTime] = useState(new Date(2001, 0, 1)); //setting initial date to January 1st 2001
- 
-  const handleCartvalueChange = (e: any) => {
-    setCartValue(e.target.value);
-  }
- 
-  const handleDeliveryDistanceChange = (e: any) => {
-    setDeliveryDistance(e.target.value);
-  }
- 
-  const handleAmountOfItemsChange = (e: any) => {
-    setAmountOfItems(e.target.value);
-  }
- 
-  const handleDateTimeChange = (e: any) => {
-    setDateTime(e.target.value);
-  }
- */
 
 
 
