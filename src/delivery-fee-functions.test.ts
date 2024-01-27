@@ -115,48 +115,53 @@ describe('Test extra items fee function', () => {
 describe('Test check rush hour function', () => {
 
     test('when time is earlier than rushhour start and day is not Friday', () => {
-        const myDate = new Date('January 24, 2024 14:30:00');
+        const myDate = '2024-01-24T14:30' //Wednesday, January 24, 2024 14:30:00');  
         expect(checkRushHour(myDate)).toBe(false);
     })
 
     test('when time is earlier than rushhour start and day is Friday', () => {
-        const myDate = new Date('October 20, 2023 12:00:00');
+        const myDate = '2023-10-20T12:00'; //Friday, October 20, 2023 12:00:00
         expect(checkRushHour(myDate)).toBe(false);
     })
 
 
     test('when time is later than rushhour start and day is not Friday', () => {
-        const myDate = new Date('September 05, 2023 19:05:00');
+        const myDate = '2023-09-05T19:05'; //Tuesday, September 05, 2023 19:05:00
         expect(checkRushHour(myDate)).toBe(false);
     })
 
     test('when time is later than rushhour start and day is Friday', () => {
-        const myDate = new Date('August 25, 2023 21:00:00');
+        const myDate = '2023-08-25T21:00'; //Friday, August 25, 2023 21:00:00
         expect(checkRushHour(myDate)).toBe(false);
     })
 
     test('when time equals rush hour start time but day is not Friday', () => {
-        const myDate = new Date('January 16, 2024 15:00:00');
+        const myDate = '2024-01-16T15:00'; //Tuesday, January 16, 2024 15:00:00
         expect(checkRushHour(myDate)).toBe(false);
     })
 
     test('when time equals rush hour start time and day is Friday', () => {
-        const myDate = new Date('August 18, 2023 15:00:00');
+        const myDate = '2023-08-18T15:00'; //Friday, August 18, 2023 15:00:00
         expect(checkRushHour(myDate)).toBe(true);
     })
 
     test('when time equals rush hour end time and day is Friday', () => {
-        const myDate = new Date('February 09, 2024 19:00:00');
+        const myDate = '2024-02-09T19:00'; // Friday, February 09, 2024 19:00:00
         expect(checkRushHour(myDate)).toBe(true);
     })
 
     test('when time equals rush hour end time but day is not Friday', () => {
-        const myDate = new Date('Mar 13, 2024 19:00:00');
+        const myDate = '2024-03-13T19:00'; // Wednesday, Mar 13, 2024 19:00:00
         expect(checkRushHour(myDate)).toBe(false);
     })
 
-    test('when time falls within rush hour and day is Friday', () => {
-        const myDate = new Date('November 17, 2023 18:59:00');
+    test('when time falls just before rush hour end time and day is Friday', () => {
+        const myDate = '2023-11-17T18:59'; // Friday, November 17, 2023 18:59:00
+        expect(checkRushHour(myDate)).toBe(true);
+    })
+
+    test('when time falls just after rush hour star time and day is Friday', () => {
+        const myDate = '2023-05-12T15:02'; // Friday, May 12, 2023 15:02:00
         expect(checkRushHour(myDate)).toBe(true);
     })
 })

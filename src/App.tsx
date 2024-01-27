@@ -10,7 +10,7 @@ function App() {
     cartValue: 0,
     deliveryDistance: 0,
     amountOfItems: 0,
-    dateTime: '2001-01-01T11:00', //setting initial date to 01.01.2001 at 11:00
+    orderTime: '2001-01-01T11:00', //providing string value for the initial date - 01.01.2001 at 11:00
     deliveryPrice: 0
   })
 
@@ -22,7 +22,7 @@ function App() {
     })
   }
 
-  //this should get triggered by button
+  //this should get triggered by button and should trigger delivery fee function 
   const handleSubmit = (e: any) => {
     e.preventDefault();
   }
@@ -82,6 +82,7 @@ function App() {
       </label>
 
       <button type='submit'> Calculate delivery fee </button>
+      <h4> Your delivery fee is: EUR</h4>
     </form>
   )
 

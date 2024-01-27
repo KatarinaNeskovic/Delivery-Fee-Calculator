@@ -54,15 +54,15 @@ export function extraItemsFee(itemsNo: number): number {
 }
 /**
  * Checks if the delivery time and date the customer requested falls within rush hours.
- * @param requestedTime requested delivery time and date
+ * @param orderTime requested delivery time and date
  * @returns true or false 
  * @remark assumed that if requested delivery time is exactly for 7:00 PM (endRushHour), it still falls into the rush hour. 
  */
-export function checkRushHour(requestedTime: Date): boolean {
-
-    const hour = requestedTime.getHours(); 
-    const minute = requestedTime.getMinutes(); 
-    const day = requestedTime.getDay(); 
+export function checkRushHour(orderTime: string): boolean {
+    const orderTimeAdjust = new Date(orderTime); //creates date object from string
+    const hour = orderTimeAdjust.getHours(); 
+    const minute = orderTimeAdjust.getMinutes(); 
+    const day = orderTimeAdjust.getDay(); 
 
     if (day === p.rushDay && hour >= p.startRushHour &&
         (hour < p.endRushHour || (hour === p.endRushHour && minute === 0))
@@ -71,3 +71,5 @@ export function checkRushHour(requestedTime: Date): boolean {
     }
     else return false;
 }
+
+
