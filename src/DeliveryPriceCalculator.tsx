@@ -56,6 +56,7 @@ export function DeliveryPriceCalculator(props:DeliveryRequest) {
             onChange={handleChange}
             required
           />
+          €
         </p>
 
         <p>
@@ -71,6 +72,7 @@ export function DeliveryPriceCalculator(props:DeliveryRequest) {
             onChange={handleChange}
             required
           /> 
+          m
         </p>
 
         <p>
