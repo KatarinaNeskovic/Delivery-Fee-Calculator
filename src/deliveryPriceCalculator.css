@@ -1,0 +1,65 @@
+
+body {
+display: flex; 
+flex-direction: column;  
+font-size: 16px;
+background-color: white;
+}
+
+.container {
+    display:table;
+    width: 40%;
+    margin-left:auto;
+    margin-right: auto;
+}
+
+form {
+  color: white;
+  background-color: #00c2e8;
+  display: table;
+  width: 80%;
+  padding-top: 1em;
+  outline: 2px solid white;
+  border-radius: 1em;
+}
+
+
+p {
+display: table-row;
+}
+
+label {
+    display: table-cell;
+    text-align: left;
+    padding-left: 1em;
+}
+
+
+input {
+ display: table-cell;
+ margin-bottom: 1.5em;
+
+
+
+}
+
+header{
+    text-align: left;
+    width: 80%;
+    margin-top: 2em;
+    margin-bottom: 0.1em;
+  /*   padding:0.3em; */
+    font-size: 1.2em;
+    font-weight: bold;
+/*     outline: 2px solid rgb(0, 128, 255); */
+
+
+}
+
+.btn {
+ 
+}
+
+h4{
+    margin-bottom: 1em;
+}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import './deliveryPriceCalculator.css';
 import { DeliveryRequest } from './delivery-fee-structure';
 import { totalDeliveryFee } from './delivery-fee-functions'
 
@@ -16,7 +17,7 @@ export function DeliveryPriceCalculator() {
   const [deliveryFee, setDeliveryFee] = useState(0);
 
   const handleChange = (e: any) => {
-    const { name, value } = e.target; //deconstructing e.target object to access its name and value props
+    const { name, value } = e.target; //deconstructing object to access its name and value props
     setRequest({
       ...request,
       [name]: value
@@ -33,74 +34,87 @@ export function DeliveryPriceCalculator() {
 
   return (
 
-    <form onSubmit={handleSubmit} className='form' >
+    <body>
 
+      <div className='container'> 
       <header>
         Delivery Fee Calculator
       </header>
 
-      <label >
-        Cart Value
-        <input
-          data-test-id="cartValue"
-          type="number"
-          min={0}
-          name="cartValue"
-          value={request.cartValue}
-          onChange={handleChange}
-          required
-        />
-      </label>
+      <form onSubmit={handleSubmit}>
 
-      <label>
-        Delivery Distance
-        <input
-          data-test-id="deliveryDistance"
-          type="number"
-          min={0}
-          name="deliveryDistance"
-          value={request.deliveryDistance}
-          onChange={handleChange}
-          required
-        />
-      </label>
 
-      <label>
-        Amount of Items
-        <input
-          data-test-id="amountOfItems"
-          type="number"
-          min={0}
-          name="amountOfItems"
-          value={request.amountOfItems}
-          onChange={handleChange}
-          required
-        />
-      </label>
 
-      <label>
-        Order Time
-        <input
-          data-test-id="orderTime"
-          type="datetime-local"
-          name='orderTime'
-          value={request.orderTime}
-          min='2024-01-01T07:00'  //setting the minimum date and time for whenever the app refreshes
-          onChange={handleChange}
-          required
-        />
-      </label>
+        <p>
+          <label htmlFor='cartValue' >
+            Cart Value
+          </label>
+          <input
+            data-test-id="cartValue"
+            type="number"
+            min={0}
+            name="cartValue"
+            value={request.cartValue}
+            onChange={handleChange}
+            required
+          />
+        </p>
 
-      <button onClick={handleSubmit}> Calculate delivery price </button>
-      <h4 data-test-id="fee"> Delivery price: {deliveryFee} EUR</h4>
-    </form>
+        <p>
+          <label htmlFor='deliveryDistance'>
+            Delivery Distance
+          </label>
+          <input
+            data-test-id="deliveryDistance"
+            type="number"
+            min={0}
+            name="deliveryDistance"
+            value={request.deliveryDistance}
+            onChange={handleChange}
+            required
+          /> 
+        </p>
+
+        <p>
+          <label htmlFor='amountOfItems'>
+            Amount of
+            Items
+          </label>
+          <input
+            data-test-id="amountOfItems"
+            type="number"
+            min={0}
+            name="amountOfItems"
+            value={request.amountOfItems}
+            onChange={handleChange}
+            required
+          />
+        </p>
+
+        <p>
+          <label htmlFor='orderTime'>
+            Order Time
+          </label>
+          <input
+            data-test-id="orderTime"
+            type="datetime-local"
+            name='orderTime'
+            value={request.orderTime}
+            min='2024-01-01T07:00'  //setting the minimum date and time for whenever the app refreshes
+            onChange={handleChange}
+            required
+          />
+        </p>
+
+        <button onClick={handleSubmit} className='btn'> Calculate delivery price </button>
+
+        <h4 data-test-id="fee"> Delivery price: {deliveryFee} € </h4>
+      </form>
+
+      </div>
+    </body>
+
   )
 
 }
 
-
-
-
-/*   <header> { className="App-header" }
-<img src={logo} className="App-logo" alt="logo" /> 
-</header> */
