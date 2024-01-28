@@ -24,7 +24,7 @@ export function DeliveryPriceCalculator(props:DeliveryRequest) {
     })
   }
 
-  const handleSubmit = (e: any) => {
+  const calculateFee = (e: any) => {
     e.preventDefault();
 
     const fee = totalDeliveryFee(request)
@@ -41,7 +41,7 @@ export function DeliveryPriceCalculator(props:DeliveryRequest) {
         Delivery Fee Calculator
       </header>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={calculateFee}>
 
         <p>
           <label htmlFor='cartValue' >
@@ -104,7 +104,7 @@ export function DeliveryPriceCalculator(props:DeliveryRequest) {
           />
         </p>
 
-        <button onClick={handleSubmit} className='btn'> Calculate delivery price </button>
+        <button onClick={calculateFee} className='btn'> Calculate delivery price </button>
 
         <h4 data-test-id="fee"> Delivery price: {deliveryFee} € </h4>
       </form>
