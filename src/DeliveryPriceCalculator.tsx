@@ -23,8 +23,6 @@ export function DeliveryPriceCalculator() {
     })
   }
 
-
-
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
@@ -32,9 +30,6 @@ export function DeliveryPriceCalculator() {
 
     setDeliveryFee(fee);
   }
-
-
-
 
   return (
 
@@ -44,9 +39,10 @@ export function DeliveryPriceCalculator() {
         Delivery Fee Calculator
       </header>
 
-      <label>
+      <label >
         Cart Value
         <input
+          data-test-id="cartValue"
           type="number"
           min={0}
           name="cartValue"
@@ -59,6 +55,7 @@ export function DeliveryPriceCalculator() {
       <label>
         Delivery Distance
         <input
+          data-test-id="deliveryDistance"
           type="number"
           min={0}
           name="deliveryDistance"
@@ -71,6 +68,7 @@ export function DeliveryPriceCalculator() {
       <label>
         Amount of Items
         <input
+          data-test-id="amountOfItems"
           type="number"
           min={0}
           name="amountOfItems"
@@ -83,6 +81,7 @@ export function DeliveryPriceCalculator() {
       <label>
         Order Time
         <input
+          data-test-id="orderTime"
           type="datetime-local"
           name='orderTime'
           value={request.orderTime}
@@ -93,7 +92,7 @@ export function DeliveryPriceCalculator() {
       </label>
 
       <button onClick={handleSubmit}> Calculate delivery price </button>
-      <h4> Delivery price: {deliveryFee} EUR</h4>
+      <h4 data-test-id="fee"> Delivery price: {deliveryFee} EUR</h4>
     </form>
   )
 
