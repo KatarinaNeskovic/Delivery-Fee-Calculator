@@ -4,14 +4,14 @@ import './deliveryPriceCalculator.css';
 import { DeliveryRequest } from './delivery-fee-structure';
 import { totalDeliveryFee } from './delivery-fee-functions'
 
-export function DeliveryPriceCalculator() {
+export function DeliveryPriceCalculator(props:DeliveryRequest) {
 
-  // setting initial state for request object
+  // setting initial state for request object 
   const [request, setRequest] = useState<DeliveryRequest>({
-    cartValue: 0,
-    deliveryDistance: 0,
-    amountOfItems: 0,
-    orderTime: '2024-01-01T07:00' //setting initial order time to Jan 1st 2024 at 7:00
+    cartValue: props.cartValue,
+    deliveryDistance: props.deliveryDistance,
+    amountOfItems: props.amountOfItems,
+    orderTime: props.orderTime 
   })
 
   const [deliveryFee, setDeliveryFee] = useState(0);
@@ -42,8 +42,6 @@ export function DeliveryPriceCalculator() {
       </header>
 
       <form onSubmit={handleSubmit}>
-
-
 
         <p>
           <label htmlFor='cartValue' >
