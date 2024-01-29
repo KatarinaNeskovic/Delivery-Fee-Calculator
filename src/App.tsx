@@ -1,10 +1,10 @@
 
 import './App.css';
-import { DeliveryPriceCalculator } from './DeliveryPriceCalculator';
+import { DeliveryFeeCalculator } from './DeliveryFeeCalculator';
 
 function App() {
 
-  return <DeliveryPriceCalculator cartValue={0} amountOfItems={0} deliveryDistance={0} orderTime='2024-01-01T07:00' />
+  return <DeliveryFeeCalculator cartValue={0} amountOfItems={0} deliveryDistance={0} orderTime='2024-01-01T07:00' />
 
 }
 

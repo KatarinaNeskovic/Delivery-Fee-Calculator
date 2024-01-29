@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
-import './deliveryPriceCalculator.css';
+import './deliveryFeeCalculator.css';
 import { DeliveryRequest } from './delivery-fee-structure';
 import { totalDeliveryFee } from './delivery-fee-functions'
 
-export function DeliveryPriceCalculator(props: DeliveryRequest) {
+export function DeliveryFeeCalculator(props: DeliveryRequest) {
 
   // setting initial state for request object 
   const [request, setRequest] = useState<DeliveryRequest>({
