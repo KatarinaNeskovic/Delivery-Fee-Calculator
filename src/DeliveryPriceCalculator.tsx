@@ -41,7 +41,7 @@ export function DeliveryPriceCalculator(props:DeliveryRequest) {
         Delivery Fee Calculator
       </header>
 
-      <form onSubmit={calculateFee}>
+      <form>
 
         <p>
           <label htmlFor='cartValue' >
@@ -100,7 +100,7 @@ export function DeliveryPriceCalculator(props:DeliveryRequest) {
             type="datetime-local"
             name='orderTime'
             value={request.orderTime}
-            min='2024-01-01T07:00'  //setting the minimum date and time for whenever the app refreshes
+            min='2024-01-01T07:00'  //setting the minimum date and time 
             onChange={handleChange}
             required
           />
