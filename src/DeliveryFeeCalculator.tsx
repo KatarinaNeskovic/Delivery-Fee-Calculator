@@ -18,11 +18,11 @@ export function DeliveryFeeCalculator(props: DeliveryRequest) {
 
   const deliveryFeeRounded = deliveryFee.toFixed(2);
 
-  const [showHeading, setShowHeading] = useState(true);
+  const [showDeliveryFee, setShowDeliveryFee] = useState(false);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target; //deconstructing object to access its name and value props
-
+    setShowDeliveryFee(false);
     setRequest((prevRequest) => {
       const updatedRequest = {
         ...prevRequest,
@@ -31,7 +31,7 @@ export function DeliveryFeeCalculator(props: DeliveryRequest) {
       return updatedRequest;
     }
     )
-  
+
   }
 
 
@@ -45,6 +45,7 @@ export function DeliveryFeeCalculator(props: DeliveryRequest) {
     else {
       const fee = totalDeliveryFee(request)
       setDeliveryFee(fee);
+      setShowDeliveryFee(true);
     }
   }
 
@@ -123,8 +124,12 @@ export function DeliveryFeeCalculator(props: DeliveryRequest) {
           </p>
 
           <button onClick={calculateFee} className='btn'> Calculate delivery price </button>
-
+          {showDeliveryFee?
             <h4 data-test-id="fee"> Delivery price: {deliveryFeeRounded} € </h4>
+            :
+            <h4> </h4>
+          }
+
         </form>
 
       </div>
