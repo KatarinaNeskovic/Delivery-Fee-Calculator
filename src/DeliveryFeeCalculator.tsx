@@ -4,6 +4,11 @@ import './deliveryFeeCalculator.css';
 import { DeliveryRequest } from './delivery-fee-structure';
 import { totalDeliveryFee } from './delivery-fee-functions'
 
+/**
+ * Function that calculates total delivery fee based on user's request
+ * @param props: properties defined by Delivery Request interface
+ * @returns 
+ */
 export function DeliveryFeeCalculator(props: DeliveryRequest) {
 
   // setting initial state for request object 
@@ -21,12 +26,13 @@ export function DeliveryFeeCalculator(props: DeliveryRequest) {
   const [showDeliveryFee, setShowDeliveryFee] = useState(false);
 
   const handleChange = (e: any) => {
-    const { name, value } = e.target; //deconstructing object to access its name and value props
+    const { name, value } = e.target; 
+
     setShowDeliveryFee(false);
     setRequest((prevRequest) => {
       const updatedRequest = {
         ...prevRequest,
-        [name]: value
+        [name]: value //input field name must correspond to property name!
       }
       return updatedRequest;
     }
@@ -35,10 +41,10 @@ export function DeliveryFeeCalculator(props: DeliveryRequest) {
   }
 
 
-
   const calculateFee = (e: any) => {
     e.preventDefault();
-    //ensuring that user requests are greater than zero 
+
+    //validation: ensuring that user requests are greater than zero 
     if (request.amountOfItems <= 0 || request.cartValue <= 0 || request.deliveryDistance <= 0) {
       alert('Values must be greater than zero!')
     }
@@ -117,7 +123,7 @@ export function DeliveryFeeCalculator(props: DeliveryRequest) {
               type="datetime-local"
               name='orderTime'
               value={request.orderTime}
-              min='2024-01-01T07:00'  //setting the minimum date and time 
+              min='2024-01-01T07:00'  
               onChange={handleChange}
               required
             />
