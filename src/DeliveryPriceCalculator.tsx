@@ -18,6 +18,8 @@ export function DeliveryPriceCalculator(props: DeliveryRequest) {
 
   const deliveryFeeRounded = deliveryFee.toFixed(2);
 
+  const [showHeading, setShowHeading] = useState(true);
+
   const handleChange = (e: any) => {
     const { name, value } = e.target; //deconstructing object to access its name and value props
 
@@ -29,22 +31,20 @@ export function DeliveryPriceCalculator(props: DeliveryRequest) {
       return updatedRequest;
     }
     )
-    /* setRequest({
-      ...request,
-      [name]: value
-    }
-    ) */
+  
   }
+
+
 
   const calculateFee = (e: any) => {
     e.preventDefault();
     //ensuring that user requests are greater than zero 
-    if (request.amountOfItems<=0 ||  request.cartValue<=0 ||request.deliveryDistance<=0) {
+    if (request.amountOfItems <= 0 || request.cartValue <= 0 || request.deliveryDistance <= 0) {
       alert('Values must be greater than zero!')
     }
     else {
-    const fee = totalDeliveryFee(request)
-    setDeliveryFee(fee);
+      const fee = totalDeliveryFee(request)
+      setDeliveryFee(fee);
     }
   }
 
@@ -124,7 +124,7 @@ export function DeliveryPriceCalculator(props: DeliveryRequest) {
 
           <button onClick={calculateFee} className='btn'> Calculate delivery price </button>
 
-          <h4 data-test-id="fee"> Delivery price: {deliveryFeeRounded} € </h4>
+            <h4 data-test-id="fee"> Delivery price: {deliveryFeeRounded} € </h4>
         </form>
 
       </div>
