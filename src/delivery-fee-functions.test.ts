@@ -23,7 +23,6 @@ describe('Test cart value surcharge function', () => {
 })
 
 
-
 describe('Test distance fee function', () => {
 
     test('when distance is smaller than min distance segment', () => {
@@ -245,14 +244,3 @@ describe('Test total delivery fee function', () => {
     
 
 })
-
-/* import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from './App';
-
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
- */
