@@ -4,9 +4,9 @@ import { DeliveryRequest } from './delivery-fee-structure';
 import { totalDeliveryFee } from './delivery-fee-functions'
 
 /**
- * Function that calculates total delivery fee based on user's request
+ * Function that calculates total delivery fee based on customer's request
  * @param props: properties defined by Delivery Request interface
- * @returns 
+ * @returns delivery fee as number
  */
 export function DeliveryFeeCalculator(props: DeliveryRequest) {
 
@@ -25,7 +25,7 @@ export function DeliveryFeeCalculator(props: DeliveryRequest) {
   const [showDeliveryFee, setShowDeliveryFee] = useState(false);
 
   const handleChange = (e: any) => {
-    const { name, value } = e.target; 
+    const { name, value } = e.target;
 
     setShowDeliveryFee(false);
     setRequest((prevRequest) => {
@@ -70,10 +70,11 @@ export function DeliveryFeeCalculator(props: DeliveryRequest) {
               Cart Value
             </label>
             <input
-              data-test-id="cartValue"
-              type="number"
+              id='cartValue'
+              data-test-id='cartValue'
+              type='number'
               min={0}
-              name="cartValue"
+              name='cartValue'
               value={request.cartValue}
               onChange={handleChange}
               required
@@ -86,10 +87,11 @@ export function DeliveryFeeCalculator(props: DeliveryRequest) {
               Delivery Distance
             </label>
             <input
-              data-test-id="deliveryDistance"
-              type="number"
+              id='deliveryDistance'
+              data-test-id='deliveryDistance'
+              type='number'
               min={0}
-              name="deliveryDistance"
+              name='deliveryDistance'
               value={request.deliveryDistance}
               onChange={handleChange}
               required
@@ -103,10 +105,11 @@ export function DeliveryFeeCalculator(props: DeliveryRequest) {
               Items
             </label>
             <input
-              data-test-id="amountOfItems"
-              type="number"
+              id='amountOfItems'
+              data-test-id='amountOfItems'
+              type='number'
               min={0}
-              name="amountOfItems"
+              name='amountOfItems'
               value={request.amountOfItems}
               onChange={handleChange}
               required
@@ -118,19 +121,20 @@ export function DeliveryFeeCalculator(props: DeliveryRequest) {
               Order Time
             </label>
             <input
-              data-test-id="orderTime"
-              type="datetime-local"
+              id='orderTime'
+              data-test-id='orderTime'
+              type='datetime-local'
               name='orderTime'
               value={request.orderTime}
-              min='2024-01-01T07:00'  
+              min='2024-01-01T07:00'
               onChange={handleChange}
               required
             />
           </p>
 
           <button onClick={calculateFee} className='btn'> Calculate delivery price </button>
-          {showDeliveryFee?
-            <h4 data-test-id="fee"> Delivery price: {deliveryFeeRounded} € </h4>
+          {showDeliveryFee ?
+            <h4 data-test-id='fee'> Delivery price: {deliveryFeeRounded} € </h4>
             :
             <h4> </h4>
           }
