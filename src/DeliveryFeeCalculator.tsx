@@ -140,12 +140,10 @@ export function DeliveryFeeCalculator(props: DeliveryRequest) {
 
           <button onClick={calculateFee} className='btn'> Calculate delivery price </button>
           {showDeliveryFee ?
-           
-              <div className='delivery-price'>
-                <label> Delivery price: </label>
-                <label data-test-id='fee' > {deliveryFeeRounded} €  </label>
-              </div>
-  
+            <div className='delivery-price'>
+              <label> Delivery price: </label>
+              <label data-test-id='fee' > {deliveryFeeRounded} €  </label>
+            </div>
             :
             <h4> </h4>
           }
