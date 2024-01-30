@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './App.css';
 import './deliveryFeeCalculator.css';
 import { DeliveryRequest } from './delivery-fee-structure';
 import { totalDeliveryFee } from './delivery-fee-functions'
