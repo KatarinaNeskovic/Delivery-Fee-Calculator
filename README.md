@@ -1,41 +1,54 @@
 # Delivery Fee Calculator
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The Delivery Fee Calculator is a React and TypeScript application that calculates the delivery fee for an order. The calculator takes into account the cart value, delivery distance, number of items, and local date and time of the order to determine the final delivery price.
 
-## Available Scripts
+## Rules for Calculating Delivery Fee
 
-In the project directory, you can run:
+1. **Small Order Surcharge:**
+   - If the cart value is less than 10€, a small order surcharge is added to the delivery price. The surcharge is the difference between the cart value and 10€.
 
-### `npm start`
+2. **Delivery Distance Fee:**
+   - A base fee of 2€ is charged for the first 1000 meters (=1km).
+   - For distances longer than 1000 meters, an additional 1€ is added for every additional 500 meters.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+3. **Item Surcharge:**
+   - If the number of items is five or more, an additional 50 cent surcharge is added for each item above and including the fifth item.
+   - A bulk fee of 1.20€ is applied for more than 12 items.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+4. **Fee Limitations:**
+   - The delivery fee can never exceed 15€, including surcharges.
+   - The delivery is free (0€) when the cart value is equal to or more than 200€.
 
-### `npm test`
+5. **Friday Rush:**
+   - During the Friday rush (3 - 7 PM), the delivery fee (including surcharges) will be multiplied by 1.2x. However, the fee cannot exceed the maximum limit of 15€.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting started
 
-### `npm run build`
+1. **Navigate to the Project Directory:**
+   - Open a terminal or command prompt and navigate to the directory where you saved the project files.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+     cd delivery-fee-calculator
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. **Install Dependencies:**
+   - Run the following command to install the required dependencies:
+   
+     npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+3. **Run the Application:**
+   - Start the application with the following command:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+     npm start
+    
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. **Open Your Browser:**
+   - Once the app is running, open your web browser and navigate to `http://localhost:3000`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+5. **Run tests:**
+   - To perform test using Jest run the following command. It launches the test runner in the interactive watch mode.
+   
+     npm run test
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+You should be all set!
 
