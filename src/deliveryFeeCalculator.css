@@ -1,72 +1,65 @@
-
 body {
-display: flex; 
-flex-direction: column;  
-font-family: Arial, Helvetica, sans-serif;
-font-size: 16px;
-background-color:#ffffff;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  background-color: #ffffff;
 }
 
 .container {
-    display:table;
-    width: 40%;
-    margin-left:auto;
-    margin-right: auto;
+  display: table;
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 form {
   display: table;
   width: 80%;
-  color:#000000;
+  color: #000000;
   background-color: #ffffff;
   padding-top: 1em;
   outline: 2px solid #00c2e8;
   border-radius: 0.5em;
 }
 
-
 p {
-display: table-row;
+  display: table-row;
 }
 
 label {
-    display: table-cell;
-    text-align: left;
-    padding-left: 1em;
+  display: table-cell;
+  text-align: left;
+  padding-left: 1em;
 }
-
 
 input {
- display: table-cell;
- margin-bottom: 1.5em;
-
-
-
+  display: table-cell;
+  margin-bottom: 1.5em;
 }
 
-header{
-    text-align: left;
-    width: 80%;
-    margin-top: 2em;
-    margin-bottom: 0.5em;
-    font-size: 1.2em;
-    font-weight: bold;
-
-
+header {
+  text-align: left;
+  width: 80%;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+  font-size: 1.2em;
+  font-weight: bold;
 }
 
 .btn {
-color: #ffffff;
- font-size: 1rem;
- font-weight: bold;
- background-color: #00c2e8;
- border-radius: 0.25rem;
- padding: 0.2rem;
- margin-left: 1em;
-
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #00c2e8;
+  border-radius: 0.25rem;
+  padding: 0.2rem;
+  margin-left: 1em;
+  margin-bottom: 1em;
 }
 
-h4{ 
-    margin-bottom: 1em;
-    margin-left: 1em;
+.delivery-price {
+ font-size: 1.1em;
+ font-weight: bold;
+ border-spacing: 0 0.5em;
 }

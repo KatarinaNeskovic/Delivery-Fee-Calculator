@@ -47,6 +47,12 @@ export function DeliveryFeeCalculator(props: DeliveryRequest) {
     if (request.amountOfItems <= 0 || request.cartValue <= 0 || request.deliveryDistance <= 0) {
       alert('Values must be greater than zero!')
     }
+
+    //validation: ensuring that amountOfItems and deliveryDistance are integers
+    else if ((request.amountOfItems * 10) % 10 !== 0 || (request.deliveryDistance * 10) % 10 !== 0) {
+      alert('Delivery distance and amount of items must be whole numbers!')
+    }
+
     else {
       const fee = totalDeliveryFee(request)
       setDeliveryFee(fee);
@@ -134,7 +140,12 @@ export function DeliveryFeeCalculator(props: DeliveryRequest) {
 
           <button onClick={calculateFee} className='btn'> Calculate delivery price </button>
           {showDeliveryFee ?
-            <h4 data-test-id='fee'> Delivery price: {deliveryFeeRounded} € </h4>
+           
+              <div className='delivery-price'>
+                <label> Delivery price: </label>
+                <label data-test-id='fee' > {deliveryFeeRounded} €  </label>
+              </div>
+  
             :
             <h4> </h4>
           }

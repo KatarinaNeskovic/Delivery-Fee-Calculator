@@ -45,7 +45,7 @@ The Delivery Fee Calculator is a React and TypeScript application that calculate
    - Once the app is running, open your web browser and navigate to `http://localhost:3000`.
 
 5. **Run tests:**
-   - To perform test using Jest run the following command. It launches the test runner in the interactive watch mode.
+   - To perform tests run the following command. 
    
      npm run test
 
