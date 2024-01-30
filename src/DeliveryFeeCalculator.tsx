@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './deliveryFeeCalculator.css';
-import { DeliveryRequest } from './delivery-fee-structure';
-import { totalDeliveryFee } from './delivery-fee-functions'
+import { DeliveryRequest } from './deliveryFeeStructure';
+import { totalDeliveryFee } from './deliveryFeeFunctions'
 
 /**
  * Function that calculates total delivery fee based on customer's request
