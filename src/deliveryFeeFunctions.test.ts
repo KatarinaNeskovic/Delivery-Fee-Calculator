@@ -43,25 +43,25 @@ describe('Test distance fee function', () => {
         expect(result).toEqual(p.minDistanceFee + p.extraDistanceFee); //to equal 3eur
     })
 
-    test('when distance is greater than min distance segment but equal to 1st extra distance segment', () => {
+    test('when distance is greater than min distance segment but equal to the 1st extra distance segment', () => {
         const distance = p.firstDistanceSegment + 500.0;  //1500m
         const result = distanceFee(distance);
         expect(result).toEqual(p.minDistanceFee + p.extraDistanceFee); //to equal 3eur
     })
 
-    test('when distance is greater than min distance segment and greater than 2nd extra distance segment', () => {
+    test('when distance is greater than min distance segment and falls in the 2nd extra distance segment', () => {
         const distance = p.firstDistanceSegment + 501.0;  //1501m
         const result = distanceFee(distance);
         expect(result).toEqual(p.minDistanceFee + 2 * p.extraDistanceFee); //to equal 4eur
     })
 
-    test('when distance is greater than min distance segment and greater than 3rd extra distance segment', () => {
+    test('when distance is greater than min distance segment and falls in the 3rd extra distance segment', () => {
         const distance = p.firstDistanceSegment + 1001.0;  //2001m
         const result = distanceFee(distance);
         expect(result).toEqual(p.minDistanceFee + 3 * p.extraDistanceFee); //to equal 5eur
     })
 
-    test('when distance is greater than min distance segment and greater than 6th extra distance segment', () => {
+    test('when distance is greater than min distance segment and falls in the 7th extra distance segment', () => {
         const distance = p.firstDistanceSegment + 3005.0;  //4005m
         const result = distanceFee(distance);
         expect(result).toEqual(p.minDistanceFee + 7 * p.extraDistanceFee); //to equal 9eur
@@ -124,12 +124,12 @@ describe('Test check rush hour function', () => {
     })
 
 
-    test('when time is later than rushhour start and day is not Friday', () => {
+    test('when time is later than rushhour end and day is not Friday', () => {
         const myDate = '2023-09-05T19:05'; 
         expect(checkRushHour(myDate)).toBe(false);
     })
 
-    test('when time is later than rushhour start and day is Friday', () => {
+    test('when time is later than rushhour end and day is Friday', () => {
         const myDate = '2023-08-25T21:00'; 
         expect(checkRushHour(myDate)).toBe(false);
     })
@@ -159,7 +159,7 @@ describe('Test check rush hour function', () => {
         expect(checkRushHour(myDate)).toBe(true);
     })
 
-    test('when time falls just after rush hour star time and day is Friday', () => {
+    test('when time falls just after rush hour start time and day is Friday', () => {
         const myDate = '2023-05-12T15:02'; 
         expect(checkRushHour(myDate)).toBe(true);
     })
@@ -225,7 +225,7 @@ describe('Test total delivery fee function', () => {
                 cartValue: 7.5,   //surcharge 2.5eur
                 amountOfItems: 4, 
                 deliveryDistance: 2001,  //surcharge 5eur 
-                orderTime: '2023-08-18T15:00',  //rush hour (multiplied by 1.2
+                orderTime: '2023-08-18T15:00',  //rush hour (multiplied by 1.2)
             }
         )).toEqual(9);
     });
