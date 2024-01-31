@@ -4,7 +4,7 @@ import { smallOrderSurcharge, distanceFee, checkRushHour, extraItemsFee, totalDe
 
 describe('Test cart value surcharge function', () => {
 
-    test('when cart value is less than minimum cart value', () => {
+    test('when cart value is less than minimum surcharge-free cart value', () => {
         const price = p.minCartValue - 1.0;
         const result = smallOrderSurcharge(price) + price;
         expect(result).toEqual(p.minCartValue);
@@ -174,7 +174,7 @@ describe('Test total delivery fee function', () => {
         expect(totalDeliveryFee(
             {
                 cartValue: 200,
-                amountOfItems: 5,
+                numberOfItems: 5,
                 deliveryDistance: 1000,
                 orderTime: '2023-05-12T15:02'
             }
@@ -187,7 +187,7 @@ describe('Test total delivery fee function', () => {
         expect(totalDeliveryFee(
             {
                 cartValue: 205,
-                amountOfItems: 5,
+                numberOfItems: 5,
                 deliveryDistance: 1000,
                 orderTime: '2023-05-12T15:02'
             }
@@ -199,7 +199,7 @@ describe('Test total delivery fee function', () => {
         expect(totalDeliveryFee(
             {
                 cartValue: 8, //surcharge 2eur
-                amountOfItems: 5,  // surcharge 0.5c
+                numberOfItems: 5,  // surcharge 0.5c
                 deliveryDistance: 1800,  //surcharge 4eur 
                 orderTime: '2024-02-09T19:00',  //rush hour (multiplied by 1.2)
             }
@@ -211,7 +211,7 @@ describe('Test total delivery fee function', () => {
         expect(totalDeliveryFee(
             {
                 cartValue: 5,   //surcharge 5eur
-                amountOfItems: 13,  //surcharge 5.7eur
+                numberOfItems: 13,  //surcharge 5.7eur
                 deliveryDistance: 2001,  //surcharge 5eur 
                 orderTime: '2023-08-18T15:00',  //rush hour (multiplied by 1.2)
             }
@@ -223,7 +223,7 @@ describe('Test total delivery fee function', () => {
         expect(totalDeliveryFee(
             {
                 cartValue: 7.5,   //surcharge 2.5eur
-                amountOfItems: 4, 
+                numberOfItems: 4, 
                 deliveryDistance: 2001,  //surcharge 5eur 
                 orderTime: '2023-08-18T15:00',  //rush hour (multiplied by 1.2)
             }
@@ -235,7 +235,7 @@ describe('Test total delivery fee function', () => {
         expect(totalDeliveryFee(
             {
                 cartValue: 7,   // surcharge 3eur
-                amountOfItems: 14,  // surcharge 6.2
+                numberOfItems: 14,  // surcharge 6.2
                 deliveryDistance: 1000,  //min surcharge 2eur
                 orderTime: '2024-03-15T19:00' 
             }

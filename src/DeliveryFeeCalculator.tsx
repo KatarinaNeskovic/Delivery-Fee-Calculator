@@ -14,7 +14,7 @@ export function DeliveryFeeCalculator(props: DeliveryRequest) {
   const [request, setRequest] = useState<DeliveryRequest>({
     cartValue: props.cartValue,
     deliveryDistance: props.deliveryDistance,
-    amountOfItems: props.amountOfItems,
+    numberOfItems: props.numberOfItems,
     orderTime: props.orderTime
   })
 
@@ -44,12 +44,12 @@ export function DeliveryFeeCalculator(props: DeliveryRequest) {
     e.preventDefault();
 
     //validation: ensuring that user requests are greater than zero 
-    if (request.amountOfItems <= 0 || request.cartValue <= 0 || request.deliveryDistance <= 0) {
+    if (request.numberOfItems <= 0 || request.cartValue <= 0 || request.deliveryDistance <= 0) {
       alert('Values must be greater than zero!')
     }
 
     //validation: ensuring that amountOfItems and deliveryDistance are integers
-    else if ((request.amountOfItems * 10) % 10 !== 0 || (request.deliveryDistance * 10) % 10 !== 0) {
+    else if ((request.numberOfItems * 10) % 10 !== 0 || (request.deliveryDistance * 10) % 10 !== 0) {
       alert('Delivery distance and amount of items must be whole numbers!')
     }
 
@@ -106,17 +106,17 @@ export function DeliveryFeeCalculator(props: DeliveryRequest) {
           </p>
 
           <p>
-            <label htmlFor='amountOfItems'>
-              Amount of
+            <label htmlFor='numberOfItems'>
+              Number of
               Items
             </label>
             <input
-              id='amountOfItems'
-              data-test-id='amountOfItems'
+              id='numberOfItems'
+              data-test-id='numberOfItems'
               type='number'
               min={0}
-              name='amountOfItems'
-              value={request.amountOfItems}
+              name='numberOfItems'
+              value={request.numberOfItems}
               onChange={handleChange}
               required
             />
@@ -140,10 +140,16 @@ export function DeliveryFeeCalculator(props: DeliveryRequest) {
 
           <button onClick={calculateFee} className='btn'> Calculate delivery price </button>
           {showDeliveryFee ?
-            <div className='delivery-price'>
-              <label> Delivery price: </label>
-              <label data-test-id='fee' > {deliveryFeeRounded} €  </label>
-            </div>
+            <p>
+              <label htmlFor='fee' className='delivery-price'> Delivery price: </label>
+              <input className='delivery-price'
+                readOnly
+                id='fee'
+                data-test-id='fee'
+                value={deliveryFeeRounded}
+              />
+              €
+            </p>
             :
             <h4> </h4>
           }

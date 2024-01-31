@@ -85,7 +85,7 @@ export function totalDeliveryFee(request: DeliveryRequest): number {
 
     if (request.cartValue >= 200) return 0;
 
-    let deliveryFee = smallOrderSurcharge(request.cartValue) + distanceFee(request.deliveryDistance) + extraItemsFee(request.amountOfItems);
+    let deliveryFee = smallOrderSurcharge(request.cartValue) + distanceFee(request.deliveryDistance) + extraItemsFee(request.numberOfItems);
 
     if (checkRushHour(request.orderTime)) {
         deliveryFee = deliveryFee * 1.2;

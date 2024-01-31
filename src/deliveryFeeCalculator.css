@@ -59,7 +59,8 @@ header {
 }
 
 .delivery-price {
- font-size: 1.1em;
- font-weight: bold;
- border-spacing: 0 0.5em;
+  font-size: 1.1em;
+  font-weight: bold;
+  max-width: 50px;
+  border: none;
 }
